@@ -1,0 +1,35 @@
+<!-- SSR:template(user-login-handler) -->
+<script type="x/template" data-component="user-login-handler">
+    <div id="login-change" class="position-relative">
+        <div class="dropdown" v-if="isLoggedIn">
+            <a href="#" class="dropdown-toggle" id="accountMenuList" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-boundary="window">
+                <i class="fa fa-user mr-1" aria-hidden="true"></i>
+                <span class="d-none d-sm-inline">{{ trans("Ceres::Template.loginHello", {"username": "${username}"}) }}</span>
+            </a>
+            <div class="account-menu dropdown-menu dropdown-menu-right small m-0 p-0 mw-100">
+                <div class="list-group" aria-labelledby="accountMenuList" >
+                    <a :href="$ceres.urls.myAccount" class="list-group-item"><i class="fa fa-user"></i> ${ $translate("Ceres::Template.loginMyAccount") }</a>
+                    <a href="#" class="list-group-item" v-logout><i class="fa fa-sign-out"></i> ${ $translate("Ceres::Template.loginLogout") }</a>
+                </div>
+            </div>
+        </div>
+        <div v-if="!isLoggedIn" class="dropdown">
+            <a href="#" class="" id="accountMenuList" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-boundary="window">
+                <i aria-hidden="true" class="fa fa-user"></i>
+            </a>
+            <div class="account-menu dropdown-menu dropdown-menu-right small">
+                <div class="list-group" aria-labelledby="accountMenuList" >
+                    <a v-if="showLogin" :href="isLogin ? 'javascript:void(0)' : '#login'" :data-toggle="isLogin ? false : 'modal'" @click="createLoginModal(); unmarkInputFields();" :aria-label="$translate('Ceres::Template.login')">
+                        <i class="fa fa-user mr-1" aria-hidden="true"></i>
+                        <span class="d-none d-sm-inline">${ $translate("Ceres::Template.login") }</span>
+                    </a>
+                    <a :href="isRegister ? 'javascript:void(0)' : '#registration'" :data-toggle="isRegister ? false : 'modal'"  @click="createRegisterModal(); unmarkInputFields();" :aria-label="$translate('Ceres::Template.loginRegister')">
+                        <i class="fa fa-user-plus mr-1" aria-hidden="true"></i>
+                        <span class="d-none d-sm-inline">${ $translate("Ceres::Template.loginRegister") }</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<!-- /SSR -->

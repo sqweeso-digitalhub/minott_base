@@ -1,0 +1,213 @@
+.dia-shop-nav {
+  background: $dia-shop-nav-bg;
+
+  @include media-breakpoint-up(md) {
+    padding: 0 20px;
+  }
+
+  &__row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+
+  &__search-wrapper {
+    @include media-breakpoint-down(sm) {
+      margin-top: 15px;
+    }
+
+    input {
+      background-color: $dia-search-input-bg;
+      border: 1px solid transparent;
+      box-shadow: none;
+      width: 100%;
+      outline: none !important;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      transition: all .2s;
+      padding: 11px 10px;
+      line-height: 1.25;
+      border-top-left-radius: $border-radius;
+      border-bottom-left-radius: $border-radius;
+      font-size: 1rem;
+    }
+  }
+
+  &__row {
+    align-items: center;
+    min-height: 7rem;
+  }
+
+  &__logo-link {
+    @include media-breakpoint-down(sm) {
+      margin: 10px 0;
+      text-align: center;
+      display: block;
+    }
+  }
+}
+
+.dia-controls-list {
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+  margin-bottom: 0;
+
+  @include media-breakpoint-down(sm) {
+    padding: 15px 0;
+  }
+
+  &__item {
+    min-width: 50px;
+    text-align: center;
+    padding: 11px 14px 0px;
+    position: relative;
+
+    @include media-breakpoint-down(sm) {
+      margin-left: 10px;
+    }
+
+    .badge-right {
+      position: absolute;
+      top: -2px;
+      right: -5px;
+      background: $dia-primary;
+      border-radius: 50%;
+      font-size: 10px;
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+      line-height: 18px;
+      z-index: 1;
+      color: $white;
+    }
+
+    &>a,
+    &>div>a,
+    &>div>div>a {
+      color: $dia-gray-darker;
+      //font-weight: bold;
+      font-size: 14px;
+      vertical-align: middle;
+      padding: 0;
+
+      i {
+        @include size(20px, 20px);
+        font-size: 18px;
+      }
+    }
+
+    span {
+      // display: none;
+    }
+
+    &--basket {
+      .toggle-basket-preview .fa-shopping-cart {
+        @include size(18px, 18px);
+        position: relative;
+        @include custom-icon;
+
+        &:before {
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='#{url-friendly-colour($fa-shopping-cart-fill-header)}' stroke-width='2' stroke-linecap='square' stroke-linejoin='arcs'%3E%3Ccircle cx='10' cy='20.5' r='1'/%3E%3Ccircle cx='18' cy='20.5' r='1'/%3E%3Cpath d='M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1'/%3E%3C/svg%3E");
+        }
+      }
+
+      .basket-preview-header.p-3 {
+        padding: 0.5rem !important;
+      }
+
+      span.h3 {
+        font-size: 1.5rem;
+      }
+
+    }
+
+    &--m-menu {
+      margin-right: auto;
+    }
+
+    &--search {
+      display: block;
+
+      @include media-breakpoint-up(md) {
+        display: none;
+      }
+    }
+
+    &__basket {
+      background: $dia-top-bar-basket-btn;
+      color: $dia-top-bar-basket-color;
+    }
+
+    &--login {
+
+      .dropdown-menu {
+        line-height: 24px;
+        padding: 10px;
+        position: absolute !important;
+        top: 100% !important;
+        transform: unset !important;
+
+        @include media-breakpoint-down(md) {
+          // left: -90px !important;
+
+          span.hidden-xs-down {
+            display: block !important;
+          }
+        }
+
+        i {
+          display: none;
+        }
+
+        a {
+          color: $dia-text;
+        }
+
+        .pipe {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+// CERES OVERWRITE
+
+.dia-shop-nav__search-wrapper .d-flex.flex-grow-1,
+.cmp-search-box .d-flex.flex-grow-1 {
+  border: 1px solid #333333;
+}
+
+.search-submit {
+  background: #333333 !important; //$dia-search-input-bg !important;
+  border: 1px solid transparent;
+  user-select: none;
+  outline: 0 !important;
+  border-top-right-radius: 0px; //$border-radius;
+  border-bottom-right-radius: 0px; //$border-radius;
+  width: 38px;
+}
+
+@include media-breakpoint-down(sm) {
+  #vue-app #page-header .container-max {
+    padding: 0 15px;
+  }
+
+  .cmp-search-box {
+    background-color: $dia-top-bar-bg;
+
+    .search-submit {
+      background: $dia-gray-dark;
+      color: $white;
+    }
+  }
+}

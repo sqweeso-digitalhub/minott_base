@@ -1,0 +1,26 @@
+.dia--image-list{
+	&__ul{
+		display: flex;
+		list-style: none;
+		justify-content: center;
+		// align-items: center;
+		padding: 0;
+		margin-bottom: 0;
+		@include unitize("margin-top", 50);
+		flex-flow: row wrap;
+	}
+	&__li {
+		background: $dia-gray-lightest;
+		padding: 10px;
+		border-radius: .3rem;
+		min-width: 110px;
+		text-align: center;
+		margin-right: 10px;
+		margin-left: 10px;
+		border: 1px solid darken($dia-gray-lightest, 10%);
+		flex: 2 0 auto;
+		img {
+			max-height: 44px;
+		}
+	}
+}

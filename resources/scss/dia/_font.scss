@@ -1,0 +1,33 @@
+$arimo-font-display: auto !default;
+$arimo-font-path: '../documents/fonts/arimo' !default;
+
+@font-face {
+  font-family: 'Arimo';
+  font-style:  normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("#{$arimo-font-path}/arimo-v13-latin-regular.woff2") format("woff2"),
+       url("#{$arimo-font-path}/arimo-v13-latin-regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: 'Arimo';
+  font-style:  normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("#{$arimo-font-path}/arimo-v13-latin-700.woff2") format("woff2"),
+       url("#{$arimo-font-path}/arimo-v13-latin-700.woff") format("woff");
+}
+
+
+$playfair-display-font-display: auto !default;
+$playfair-display-font-path: '../documents/fonts/playfair-display' !default;
+
+@font-face {
+  font-family: 'Playfair Display';
+  font-style:  normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("#{$playfair-display-font-path}/playfair-display-v19-latin-regular.woff2") format("woff2"),
+       url("#{$playfair-display-font-path}/playfair-display-v19-latin-regular.woff") format("woff");
+}

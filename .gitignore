@@ -1,0 +1,9 @@
+.idea/
+*.iml
+node_modules
+home.html
+sftp-config.json
+composer.json
+ServiceProvider.php
+package-lock.json
+*.vscode

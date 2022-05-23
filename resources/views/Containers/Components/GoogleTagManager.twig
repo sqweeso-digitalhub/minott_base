@@ -1,0 +1,68 @@
+{% set tagManager = config("Minott.global.tagManager") %}
+{% set tagManagerId = config("Minott.global.tagManagerId") %}
+{% set useGross = config("Minott.global.tagManagerSubmitGrossPrices") == "true" %}
+{% set webstoreConfig = services.webstoreConfig.getWebstoreConfig() %}
+
+{% if tagManager and tagManagerId | length > 0 %}
+    {% if services.template.isCurrentTemplate('tpl.confirmation') and sendConfirmation %}
+        {% set data = services.customer.getLatestOrder() %}
+        {% if data is defined %}
+            {% set shippingCosts = 0 %}
+            {% set commaProductIDs = "" %}
+            {% set commaProductQuantities = "" %}
+            {% set basketProductCount = 0 %}
+            {% set basketProductQuantity = 0 %}
+
+            {# Calculate shipping costs #}
+            {% for item in data.order.orderItems %}
+                {% if item.typeId == 1 %}
+                    {% set basketProductCount = basketProductCount + 1 %}
+                    {% set basketProductQuantity = basketProductCount + item.quantity %}
+                    {% set commaProductIDs = commaProductIDs + item.itemVariationId + "," %}
+                    {% set commaProductQuantities = commaProductIDs + item.quantity + "," %}
+                {% endif %}
+                {% if item.typeId == 6 %}
+                    {% if useGross %}
+                        {% set shippingCosts = shippingCosts + item.amounts[0].priceGross %}
+                    {% else %}
+                        {% set shippingCosts = shippingCosts + item.amounts[0].priceNet %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            <script>
+                window.dataLayer.push({
+                    "ecommerce":{
+                        "purchase":{
+                            "actionField":{
+                                "id":"{{ data.order.id }}",
+                                "affiliation": "{{ webstoreConfig.name }}",
+                                "revenue":"{% if useGross %}{{ data.order.amounts[0].grossTotal }}{% else %}{{ data.order.amounts[0].netTotal }}{% endif %}",
+                                "tax": "{{ data.order.amounts[0].vatTotal }}",
+                                "shipping":"{{ shippingCosts }}",
+                                "currencyCode": "{{ data.order.amounts[0].currency }}"
+                            },
+                            "products":[
+                                {% for item in data.order.orderItems %}
+                                    {% if item.typeId == 1 %}
+                                        {
+                                            "name":"{{ item.orderItemName }}",
+                                            "sku":"{{ item.variation.number }}",
+                                            "id":"{{ item.itemVariationId }}",
+                                            "price":"{% if useGross %}{{ item.amounts[0].priceGross }}{% else %}{{ item.amounts[0].priceNet }}{% endif %}",
+                                            "quantity":"{{ item.quantity }}"
+                                        }{% if not loop.last %},{% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            ]
+                        }
+                    },
+                    "google_tag_params":{
+                        "ecomm_pagetype":"purchase",
+                        "ecomm_prodid": "{{ commaProductIDs|trim(',', 'right') }}",
+                        "ecomm_totalvalue":{% if useGross %}{{ data.order.amounts[0].grossTotal }}{% else %}{{ data.order.amounts[0].netTotal }}{% endif %}
+                    }
+                });
+            </script>
+        {% endif %}
+    {% endif %}
+{% endif %}

@@ -1,0 +1,106 @@
+.basket-item-container {
+    & .item-bundle {
+        font-size: 100%;
+    }
+
+    .basket-item {
+        .meta-container-wrapper {
+            .meta-container-wrapper-inner {
+                .meta-container {
+                    .item-name {
+                        margin-bottom: 5px;
+                        display: block;
+                        font-size: 100%;
+                    }
+
+                    .item-base-price {
+                        font-size: 100%;
+                    }
+
+                    .item-small-prices {
+                        font-size: 100%;
+                    }
+                }
+            }
+        }
+
+        .item-properties {
+            font-size: 100%;
+
+            @at-root .basket-small ul {
+                .item-property-value {
+                    &>strong {
+                        &:before {
+                            font-size: 100%;
+                        }
+                    }
+                }
+            }
+        }
+
+        .item-additional-information-container {
+            .item-additional-information {
+                font-size: 100%;
+            }
+        }
+    }
+}
+
+.basket-preview {
+    font-size: 14px !important;
+
+    .totals {
+        font-size: 100% !important;
+        margin-bottom: 50px;
+
+        .cmp-totals{
+            line-height: 1;
+        }
+    }
+
+    .basket-preview-header .close {
+        top: 5px;
+        right: 10px;
+    }
+}
+
+.split-basket-height {
+    display: block;
+    padding: 0 0 15px;
+}
+
+@include media-breakpoint-down(sm) {
+    .cmp-address-list .items>div:first-child {
+        min-height: auto;
+    }
+
+    .add-item {
+        .btn-medium {
+            height: 100%;
+        }
+    }
+
+    .basket-list-item .basket-item {
+        flex-wrap: wrap;
+    }
+
+    .basket-list-item .basket-item .image-container {
+        width: auto;
+        margin: 0 auto;
+        height: 150px;
+    }
+
+    .basket-preview {
+        .basket-list-item .basket-item .image-container {
+            height: 130px;
+        }
+
+        .cmp-totals dd{
+            margin-bottom: 0.25rem;
+        }
+    }
+
+    .img-basket-small {
+        margin: 0 auto;
+    }
+}

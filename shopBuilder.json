@@ -1,0 +1,37 @@
+{
+    "presets": {
+        "header": [
+            {
+                "label": "Widget.presetHeaderDefault",
+                "presetClass": "Minott\\Widgets\\Presets\\DefaultHeaderPreset"
+            },
+            {
+                "label": "Widget.presetHeaderCheckout",
+                "presetClass": "Minott\\Widgets\\Presets\\CheckoutHeaderPreset"
+            }
+        ],
+        "footer": [
+            {
+                "label": "Widget.presetFooterDefault",
+                "presetClass": "Minott\\Widgets\\Presets\\DefaultFooterPreset"
+            },
+            {
+                "label": "Widget.presetFooterCheckout",
+                "presetClass": "Minott\\Widgets\\Presets\\CheckoutFooterPreset"
+            }
+        ],
+        "content": [
+            {
+                "label": "Widget.presetHomepageDefault",
+                "presetClass": "Minott\\Widgets\\Presets\\DefaultHomepagePreset"
+            }
+        ]
+    },
+    "categories": [
+        {
+            "key": "dia",
+            "label": "Widget.categoryDia",
+            "position": 100
+        }
+    ]
+}

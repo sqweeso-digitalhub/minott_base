@@ -1,0 +1,47 @@
+{
+  "name": "Minott",
+  "license": "AGPL-3.0",
+  "version": "5.0.32",
+  "scripts": {
+    "build": "npm run build:prod && npm run build:dev",
+    "build:dev": "webpack --progress",
+    "build:prod": "webpack --env.prod --progress",
+    "build:sass": "npm run build:sass:dev && npm run build:sass:prod",
+    "build:sass:dev": "webpack --config-name styles --progress",
+    "build:sass:prod": "webpack --config-name styles --env.prod --progress",
+    "build:sass-vendor": "node tools/bundleSass.js",
+    "prebuild": "npm run build:sass-vendor"
+  },
+  "browserslist": [
+    "> .25%"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.9.6",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.9.6",
+    "autoprefixer": "^8.6.5",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.5.3",
+    "eslint": "^6.8.0",
+    "eslint-config-google": "^0.13.0",
+    "eslint-loader": "^2.2.1",
+    "esm": "^3.2.25",
+    "expose-loader": "^0.7.5",
+    "glob": "^7.1.6",
+    "mini-css-extract-plugin": "^0.8.2",
+    "node-sass": "^4.14.1",
+    "postcss": "^6.0.21",
+    "postcss-loader": "^3.0.0",
+    "postcss-scss": "^1.0.5",
+    "sass-loader": "^7.3.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-fix-style-only-entries": "^0.3.1",
+    "webpack-require-from": "^1.8.1"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5"
+  }
+}

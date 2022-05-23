@@ -1,0 +1,10 @@
+{% if ceresConfig.log.performanceLevel  == 'development' %}
+    <link rel="stylesheet" href="{{ plugin_path('Minott') }}/css/dia.css">
+{% else %}
+    <link rel="stylesheet" href="{{ plugin_path('Minott') }}/css/dia.min.css">
+{% endif %}
+
+{{ component( "Minott::Customer.Components.UserLoginHandler" ) }}
+{{ component( "Minott::WishList.Components.WishListCount" ) }}
+{{ component( "Minott::ItemList.Components.Filter.ItemFilter" ) }}
+{{ component( "Minott::ItemList.Components.ItemSearch" ) }}

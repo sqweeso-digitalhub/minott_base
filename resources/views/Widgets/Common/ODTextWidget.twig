@@ -1,0 +1,8 @@
+{% import "Ceres::Widgets.Helper.WidgetHelper" as WidgetHelper %}
+
+{% set bemModiClass = widget.settings.bemModiClass.mobile %}
+{% set buttonText = widget.settings.buttonText.mobile %}
+
+<div class="od-show-more-widget">
+    <div class="od-show-more-widget__more" show-div="{{ bemModiClass }}">{{ buttonText }}</div>
+</div>

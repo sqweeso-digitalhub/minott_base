@@ -1,0 +1,26 @@
+{
+    "identifier": "Minott::ODTextWidget",
+    "label": "Widget.ODTextLabel",
+    "previewImageURL": "/images/widgets/text-inline.svg",
+    "type": "static",
+    "categories": ["text"],
+    "position": 800,
+    "widgetClass": "Minott\\Widgets\\Common\\ODTextWidget",
+    "settings": {
+        "bemModiClass": {
+            "type": "text",
+            "defaultValue": "",
+            "options": {
+                "name": "Widget.bemModiClass"
+            }
+        },
+        "buttonText": {
+            "type": "text",
+            "defaultValue": "mehr anzeigen",
+            "options": {
+                "name": "Widget.buttonText",
+                "tooltipText": "Widget.buttonText"
+            }
+        }
+    }
+}

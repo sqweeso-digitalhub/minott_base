@@ -1,0 +1,143 @@
+.dia-megamenu{
+  background-color: #fff;
+  -webkit-column-gap: .5em;
+  column-gap: .5em;
+  -webkit-column-rule: 1px solid #dcdbd7;
+  column-rule: 1px solid #dcdbd7; 
+  display: none;
+  -webkit-column-count: 4;
+  column-count: 4;
+  -webkit-column-fill: balance;
+  column-fill: balance;
+  -webkit-transition: all .1s ease;
+  transition: all .1s ease;
+  height: auto;
+  top: 100%;
+  width: auto;
+  max-width: 25em;
+  min-width: 100%;
+  word-wrap: break-word;
+  position: absolute;
+  left: 0;
+  list-style: none;
+  padding: 20px;
+  box-shadow: $box-shadow;
+
+  &__wrap-list {
+    list-style: none;
+    padding: 0;
+    line-height: 24px;
+  }
+  &__wrap {
+    flex: 0 0 15%;
+    margin: 5px 0px;
+  }
+  &__item {
+    &--level1 {
+      //font-weight: bold;
+    }
+  }
+  &__link {
+    color: inherit;//$dia-primary; //$dia-navbar-link-color;
+    &:hover {
+      color: $dia-primary; //$dia-primary; //$dia-navbar-link-color;
+    }
+    &:active {
+      color: $dia-navbar-link-color-active;
+    }
+  }
+}
+.dia-navbar {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+
+  @include media-breakpoint-down(md) {
+    display: none !important;
+  }
+
+  &__wrapper {
+    background: $dia-navbar-bg;
+    border-top: 1px solid $dia-navbar-border-color;
+    border-bottom: 1px solid $dia-navbar-border-color;
+  }
+  &__toggle {
+    margin-left: 0;
+    svg {
+      stroke: $dia-navbar-mobile-fill;
+    }
+  }
+
+  &__link {
+    font-size: 14px;
+    padding: 10px 5px;
+    text-transform: uppercase;
+
+    color: $dia-navbar-link-color;
+    display: inline-block;
+    border-bottom: 2px solid transparent;
+    &:hover {
+      color: #fff; //$dia-navbar-link-color-hover;
+    }
+    &:active {
+      color: $dia-navbar-link-color-active;
+    }
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+
+  &__dd {
+    display: none;
+  }
+
+  &__item {
+    &--dd {
+      position: relative;
+      &:hover {
+
+        .dia-navbar {
+          &__link {
+            color: white;//$dia-navbar-link-color-hover;
+            display: inline-block;
+            border-bottom: 2px solid white;
+          }
+          &__dd {
+            position: absolute;
+            display: block;
+            left: 0;
+            list-style: none;
+            background: #fff;
+            padding: 0;
+            width: 185px;
+            top: 43px;
+            box-shadow: $shadow;
+          }
+
+          &__dd-link{
+            padding: 10px 15px;
+            display: block;
+            color: $dia-navbar-dd-link-color;
+            &:hover {
+              color: lighten($dia-navbar-dd-link-color, 10%);
+              background: $gray-lightest;
+            }
+          }
+        }
+        .dia-megamenu{
+          display: flex;
+          flex-wrap: wrap;
+          flex-direction: row;
+          justify-content: flex-start;
+        }
+
+      }
+    }
+    &--megamenu{
+      position: static;
+    }
+  }
+}

@@ -1,0 +1,459 @@
+//
+// Variables
+// --------------------------------------------------
+
+$white: #ffffff;
+$black: #000000;
+
+$dia-gray-darker:       #292c2f; 
+$dia-gray-dark:         #43484D; 
+$dia-gray:              #333333;
+$dia-gray-light:        #86939E;
+$dia-gray-lighter:      #d1d9e0;
+$dia-gray-lightest:     #f4f4f4; 
+
+$dia-primary:           #5F0000; 
+$dia-primary-dark:      darken($dia-primary, 10%);
+ 
+$dia-secondary:         $dia-gray-dark;
+$dia-default:           $dia-gray-dark;
+$dia-info:              #4db6ac;
+$dia-danger:             #f44336;
+$dia-success:           #89C34A; 
+$dia-warning:           #f48536;
+
+$dia-text:              $dia-gray-dark; 
+$dia-body-bg:           $white;
+
+$dia-responsive-font-auto: true;
+
+$theme-colors: ();
+$theme-colors: map-merge((
+        "primary": $dia-primary,
+        "secondary": $dia-secondary,
+        "success": $dia-success,
+        "info": $dia-info,
+        "warning": $dia-warning,
+        "danger": $dia-danger,
+        "white": $white
+    ),
+$theme-colors);
+
+
+//
+// TYPO IN PX
+// --------------------------------------------------
+
+$dia-font-family-sans-serif: 'Arimo', Helvetica, Arial, sans-serif !default;
+$dia-font-family-headline: 'Playfair Display', Helvetica, Arial, sans-serif !default;
+
+// Desktop Font Size
+
+$dia-h1:               50; 
+$dia-h2:               32; 
+$dia-h3:               26; 
+$dia-h4:               20; 
+$dia-h5:               18; 
+$dia-h6:               16; 
+
+// Body Font Size
+$dia-text-size:        18;
+
+$dia-display-1:        32; 
+$dia-display-2:        26; 
+$dia-display-3:        24; 
+
+//
+// Header 
+// --------------------------------------------------
+
+$dia-top-bar-bg:                $dia-gray;
+$dia-top-bar-border:            darken($dia-top-bar-bg ,5%);
+$dia-top-bar-color:             $dia-gray-light;
+$dia-top-bar-basket-btn:        darken($dia-top-bar-bg ,5%);
+$dia-top-bar-basket-color:      $white;
+
+$dia-shop-nav-bg:               $white;
+$dia-search-input-bg:           $dia-gray-lightest;
+
+$dia-navbar-bg:                 $black;
+$dia-navbar-link-color:         $white;
+$dia-navbar-link-color-hover:   $dia-primary;
+$dia-navbar-link-color-active:  $dia-primary;
+$dia-navbar-dd-link-color:      $dia-text;
+$dia-navbar-border-color:       darken($dia-gray-lightest, 5%);
+
+//
+// Footer
+// --------------------------------------------------
+$dia-footer-bg:                 $white;
+$dia-footer-color:              $dia-text;
+$dia-footer-link-color:         lighten($dia-footer-color, 30%);
+
+$dia-footer-features-bg:        darken($dia-gray-light, 10%);
+$dia-footer-features-color:     $dia-gray-dark; 
+
+$dia-footer-copyright-bg:       #666666;
+$dia-footer-copyright-color:    $white;
+$dia-footer-copyright-logo:     FFFFFF;
+
+//
+// ICONS
+// --------------------------------------------------
+$fa-shopping-cart-fill-header:  $dia-text;
+$fa-shopping-cart-fill:         $white; 
+$fa-shopping-bag-fill:          $white; 
+$fa-user-fill:                  $dia-text; 
+$search-icon-fill:              $dia-text;
+$dia-navbar-mobile-fill:        $dia-text; 
+
+//
+// Header + Footer Checkout
+// --------------------------------------------------
+$dia-header-checkout-bg:        $white;
+$dia-header-checkout-color:		$dia-text;
+
+$menu-bg-sm:                    $white;
+$menu-breadcrumb-bg:            $dia-top-bar-bg;
+$menu-color-sm:                 $dia-text;
+
+//
+// Basics
+// --------------------------------------------------
+$border-radius:                 0rem;
+$shadow:                        1px 2px 3px 0 rgba(0,0,0,0.10);
+$border-width:                  1px;
+$dia-border-color:              #d1d9e0;
+ 
+$btn-font-weight:               bold;
+
+// CERES
+$text-muted:					$dia-gray-light;
+
+$breadcrumb-bg:               #F4F4F4;
+
+// --------------------------------------------------
+// Weitere Variablen findet ihr in der _user-variables.scss
+// --------------------------------------------------
+
+
+//
+// Variables
+// --------------------------------------------------
+$enable-deprecation-messages: false;
+
+//
+// Colors
+//
+$white:                     #fff;
+
+$gray-100:                  #f8f9fa;
+$gray-200:                  #e9ecef;
+$gray-300:                  #dee2e6;
+$gray-400:                  #ced4da;
+$gray-500:                  #adb5bd;
+$gray-600:                  #6c757d;
+$gray-700:                  #495057;
+$gray-800:                  #343a40;
+$gray-900:                  #212529;
+
+$gray-lightest:             $dia-gray-lightest;
+$gray-lighter2:             #f4f4f4;
+$gray-lighter:              $dia-gray-lighter;
+$gray-light:                $dia-gray-light;
+$gray:                      $dia-gray;
+$gray-dark:                 $dia-gray-dark;
+$gray-darker:               $dia-gray-darker;
+
+$black:                     #000;
+
+$blue:                      #008ebd;
+$indigo:                    #6610f2;
+$purple:                    #6f42c1;
+$pink:                      #e83e8c;
+$red:                       #d4021d;
+$orange:                    #fd7e14;
+$yellow:                    #ffc107;
+$green:                     #28a745;
+$teal:                      #20c997;
+$cyan:                      #17a2b8;
+
+// legacy
+$brand-primary:             $dia-primary;
+$brand-secondary:           $dia-default;
+$brand-success:             $dia-success;
+$brand-info:                $dia-info;
+$brand-warning:             $dia-warning;
+$brand-danger:              $dia-danger;
+
+$primary:                   $brand-primary;
+$secondary:                 $brand-secondary;
+$success:                   $brand-success;
+$info:                      $brand-info;
+$warning:                   $brand-warning;
+$danger:                    $brand-danger;
+$light:                     $dia-gray-lightest;
+$dark:                      $dia-gray-dark;
+
+$yiq-text-dark:             $dia-gray-dark;
+$yiq-text-light:            $white;
+$yiq-contrasted-threshold:  186;
+
+//
+// Fonts
+//
+$root-directory:            '..';
+
+$flag-icon-css-path:        '#{$root-directory}/images/flags';
+$flag-icon-rect-path:       '/4x3';
+$flag-icon-square-path:     '/1x1';
+
+$fa-font-path:              "#{$root-directory}/documents/fonts";
+
+//
+// Top Bar
+//
+$top-bar-bg:                $gray-dark;
+$top-bar-color:             color-yiq($top-bar-bg);
+$top-bar-basket-btn:        $brand-primary;
+$top-bar-basket-color:      color-yiq($top-bar-basket-btn);
+
+//
+// Footer
+//
+$footer-bg:                 $gray-lightest;
+$footer-color:              $gray-dark;
+
+$footer-features-bg:        darken($gray-lightest, 10%);
+$footer-features-color:     $gray-dark;
+
+//
+// Availability
+//
+$availability_1:            $brand-success;
+$availability_2:            $brand-success;
+$availability_3:            $brand-warning;
+$availability_4:            $brand-warning;
+$availability_5:            $brand-danger;
+$availability_6:            $brand-danger;
+$availability_7:            $brand-danger;
+$availability_8:            $brand-danger;
+$availability_9:            $gray-dark;
+$availability_10:           $gray-dark;
+
+
+//
+// Typography
+//
+$font-family-sans-serif:    $dia-font-family-sans-serif;
+$font-family-serif:         Georgia, "Times New Roman", Times, serif;
+$font-family-heading:       $font-family-sans-serif;
+
+// Pixel value used to responsively scale all typography. Applied to the `<html>` element.
+$font-size-root:            $dia-text-size;
+
+$h1-font-size:              $dia-h1 + unquote("px");
+$h2-font-size:              $dia-h2 + unquote("px");
+$h3-font-size:              $dia-h3 + unquote("px");
+$h4-font-size:              $dia-h4 + unquote("px");
+$h5-font-size:              $dia-h5 + unquote("px");
+$h6-font-size:              $dia-h6 + unquote("px");
+
+$display1-size:             $dia-display-1 + unquote("px");
+$display2-size:             $dia-display-2 + unquote("px");
+$display3-size:             $dia-display-3 + unquote("px");
+$display4-size:             $dia-display-3 + unquote("px");
+
+$headings-line-height:      1.1;
+
+$hr-border-color:           $gray-lighter;
+
+$list-inline-padding:       5px;
+
+$text-muted:		        $dia-gray-light;
+// Components
+//
+// Define common padding and border radius sizes and more.
+
+$line-height-lg:            (4 / 3);
+
+$border-radius:             $border-radius;
+$border-radius-sm:          $border-radius;
+$border-radius-lg:          $border-radius;
+
+//Ceres 4 variables
+$aside-columns-width: 30em;
+
+//
+// Sizes
+//
+$heights: (1: (xs: 36px, sm: 48px, md: 64px, lg: 72px, xl: 80px),
+  2: (xs: 72px, sm: 90px, md: 128px, lg: 144px, xl: 160px),
+  3: (xs: 128px, sm: 160px, md: 192px, lg: 224px, xl: 256px),
+  4: (xs: 200px, sm: 244px, md: 288px, lg: 332px, xl: 376px),
+  5: (xs: 272px, sm: 328px, md: 384px, lg: 440px, xl: 496px));
+
+// Buttons
+//
+// For each of Bootstrap's buttons, define text, background and border color.
+
+$btn-padding-x:             10px;
+$btn-padding-y:             12px;
+$btn-line-height:           1.25;
+
+$btn-padding-x-lg:          1.5rem;
+$btn-padding-y-lg:          .75rem;
+
+$btn-block-spacing-y:       .5rem;
+$btn-toolbar-margin:        .5rem;
+
+// Forms
+
+$input-padding-y:           .5rem;
+$input-line-height:         1.25;
+
+$input-border-color:        $dia-border-color;
+
+$input-focus-border-color:  #66afe9;
+$input-focus-box-shadow:    rgba(102,175,233,.6);
+
+$input-placeholder-color:   #999;
+
+$input-padding-y-lg:        .75rem;
+$input-padding-x-lg:        1.5rem;
+
+$custom-control-indicator-disabled-bg:          #eee;
+$custom-control-label-disabled-color:           #767676;
+
+$custom-control-checked-indicator-color:        #fff;
+$custom-control-checked-indicator-bg:           #0074d9;
+
+$custom-control-indicator-focus-box-shadow:     0 0 0 .075rem #fff, 0 0 0 .2rem #0074d9;
+
+$custom-control-indicator-active-color:         #fff;
+$custom-control-indicator-active-bg:            #84c6ff;
+
+$custom-checkbox-indicator-indeterminate-bg:    #0074d9;
+
+$custom-select-padding-y:                       .8rem;
+$custom-select-padding-x:                       1rem;
+$custom-select-height:                          auto;
+$custom-select-line-height:                     1.2;
+$custom-select-border-width:                    1px;
+
+$custom-file-height:                            2.5rem;
+$custom-file-focus-box-shadow:                  0 0 0 .075rem #fff, 0 0 0 .2rem #0074d9;
+
+$custom-file-padding-x:                         .5rem;
+$custom-file-padding-y:                         1rem;
+$custom-file-color:                             #555;
+$custom-file-bg:                                #fff;
+$custom-file-border-color:                      #ddd;
+$custom-file-box-shadow:                        inset 0 .2rem .4rem rgba(0,0,0,.05);
+$custom-file-button-bg:                         #eee;
+
+$form-check-input-margin-y:                     .2rem;
+
+// This allows us to at a glance determine relative layers of our application and prevents bugs
+// arrising from arbitrary z-index values. Do not edit the z-index scale! Only add application
+// scoped z-index values.
+
+
+// Z-Index Scale
+// --------------------------------------------------
+$zIndex-0:                          990;
+$zIndex-1:                          1000;
+$zIndex-2:                          1020;
+$zIndex-3:                          1030;
+$zIndex-4:                          1040;
+$zIndex-5:                          1050;
+$zIndex-6:                          1060;
+$zIndex-7:                          1070;
+$zIndex-8:                          1080;
+$zIndex-9:                          1090;
+$zIndex-10:                         10000;
+
+// Z-index master list
+//
+// Warning: Avoid customizing these values. They're used for a bird's eye view
+// of components dependent on the z-axis and are designed to all work together.
+
+$zindex-dropdown:                   $zIndex-1;
+$zindex-fixed:                      $zIndex-3;
+$zindex-modal-backdrop:             $zIndex-7;
+$zindex-modal:                      $zIndex-8;
+$zindex-popover:                    $zIndex-10;
+$zindex-sticky:                     $zIndex-2;
+$zindex-tooltip:                    $zIndex-7;
+$zindex-wrapper:                    $zIndex-10;
+
+// Navbar
+$navbar-background-color:           $dia-navbar-bg;
+$navbar-dark-color:                 $gray;
+$navbar-dark-disabled-color:        $gray-light;
+
+
+// Navs
+
+$nav-link-padding-y:                1.3rem;
+$nav-link-hover-bg:                 $brand-primary;
+
+$nav-tabs-border-color:             #ddd;
+
+// Sidenavigation
+$nav-link-expandable-margin:        1.25rem !default;
+
+// Popovers
+$popover-max-width:                 276px;
+$popover-max-width-md:              414px;
+$popover-max-width-lg:              552px;
+$popover-inner-padding:             1px;
+
+// Padding applied to the modal body
+$modal-dialog-margin:               0px;
+
+$modal-lg:                          900px;
+$modal-md:                          600px;
+$modal-sm:                          300px;
+
+
+
+// Breadcrumbs
+
+$breadcrumb-padding-y:              .5rem;
+$breadcrumb-bg:                     $dia-body-bg;
+
+// Category
+
+$category-text-color:               #fff;
+
+// Liveshopping
+
+$live-shopping-padding-x:           0.8rem;
+$live-shopping-padding-y:           1rem;
+
+$component-active-bg:               $primary;
+$component-active-color:            color-yiq($component-active-bg);
+
+// Shopbuilder
+$shop-builder-colors:
+  (
+    "primary":    $dia-primary,
+    "secondary":  $dia-secondary,
+    "success":    $dia-success,
+    "info":       $dia-info,
+    "warning":    $dia-warning,
+    "danger":     $dia-danger
+  );
+
+
+// Fix
+$gray-300: #dee2e6 !default;
+$gray-900: #212529 !default;
+$black:                     #000 !default;
+$border-color:                $gray-300 !default;
+$body-color:                $gray-900 !default;
+$box-shadow:                  0 .5rem 1rem rgba($black, .15) !default;
+$small-font-size: 80% !default;
+$grid-gutter-width:           30px !default;
+$grid-columns:                12 !default;

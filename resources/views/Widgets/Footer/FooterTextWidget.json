@@ -1,0 +1,17 @@
+{
+    "identifier": "Minott::FooterTextWidget",
+    "label": "Widget.textLabel",
+    "previewImageURL": "/images/dia-widgets/footer-text.png",
+    "type": "static",
+    "categories": ["dia"],
+    "position": 800,
+    "widgetClass": "Minott\\Widgets\\Footer\\FooterTextWidget",
+    "settings": {
+        "text": {
+            "type": "codeEditor",
+            "options": {
+                "name": "Widget.textCodeEditorLabel"
+            }
+        }
+    }
+}

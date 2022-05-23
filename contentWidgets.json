@@ -1,0 +1,465 @@
+[
+    {
+        "identifier": "Minott::ImageListWidget",
+        "label": "Widget.imageListLabel",
+        "previewImageURL": "/images/dia-widgets/footer-image-list.png",
+        "type": "static",
+        "categories": [
+            "dia"
+        ],
+        "position": 900,
+        "widgetClass": "Minott\\Widgets\\Common\\ImageListWidget",
+        "settings": {
+            "class": {
+                "type": "text",
+                "required": true,
+                "default": "footer",
+                "options": {
+                    "name": "Widget.classLabel"
+                }
+            },
+            "entries": {
+                "type": "vertical",
+                "isList": "[1,]",
+                "options": {
+                    "name": "Widget.listEntryLabel"
+                },
+                "children": {
+                    "text": {
+                        "type": "text",
+                        "required": false,
+                        "options": {
+                            "name": "Widget.listEntryNameLabel",
+                            "tooltipText": "Widget.listEntryNameTooltip"
+                        }
+                    },
+                    "image": {
+                        "type": "file",
+                        "required": false,
+                        "defaultValue": "",
+                        "options": {
+                            "name": "Widget.imageCarouselCustomImagePathLabel",
+                            "tooltipText": "Widget.imageCarouselCustomImagePathTooltip"
+                        }
+                    },
+                    "url": {
+                        "type": "url",
+                        "required": false,
+                        "options": {
+                            "name": "Widget.listEntryUrlLabel",
+                            "tooltipText": "Widget.listEntryUrlTooltip"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        "identifier": "Minott::ODTextWidget",
+        "label": "Widget.ODTextLabel",
+        "previewImageURL": "/images/widgets/text-inline.svg",
+        "type": "static",
+        "categories": [
+            "text"
+        ],
+        "position": 800,
+        "widgetClass": "Minott\\Widgets\\Common\\ODTextWidget",
+        "settings": {
+            "bemModiClass": {
+                "type": "text",
+                "defaultValue": "",
+                "options": {
+                    "name": "Widget.bemModiClass"
+                }
+            },
+            "buttonText": {
+                "type": "text",
+                "defaultValue": "mehr anzeigen",
+                "options": {
+                    "name": "Widget.buttonText",
+                    "tooltipText": "Widget.buttonText"
+                }
+            }
+        }
+    },
+    {
+        "identifier": "Minott::SpacerWidget",
+        "label": "Widget.spacerLabel",
+        "previewImageURL": "/images/dia-widgets/spacer.png",
+        "type": "static",
+        "categories": [
+            "dia"
+        ],
+        "position": 400,
+        "widgetClass": "Minott\\Widgets\\Common\\SpacerWidget",
+        "settings": {
+            "size": {
+                "type": "select",
+                "required": true,
+                "defaultValue": "small",
+                "options": {
+                    "name": "Widget.spacerSizeLabel",
+                    "listBoxValues": [
+                        {
+                            "value": "small",
+                            "caption": "Widget.spacerSmallCaption",
+                            "position": 0
+                        },
+                        {
+                            "value": "medium",
+                            "caption": "Widget.spacerMediumCaption",
+                            "position": 1
+                        },
+                        {
+                            "value": "large",
+                            "caption": "Widget.spacerLargeCaption",
+                            "position": 2
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "identifier": "Minott::FooterLegalInformationWidget",
+        "label": "Widget.legalInformationLabel",
+        "previewImageURL": "/images/dia-widgets/footer-rechtlich.png",
+        "type": "footer",
+        "categories": [
+            "dia"
+        ],
+        "position": 1200,
+        "widgetClass": "Minott\\Widgets\\Footer\\FooterLegalInformationWidget",
+        "settings": {
+            "showCancellationRights": {
+                "type": "checkbox",
+                "required": true,
+                "defaultValue": true,
+                "options": {
+                    "name": "Widget.legalInformationShowCancellationLabel"
+                }
+            },
+            "showLegalDisclosure": {
+                "type": "checkbox",
+                "required": true,
+                "defaultValue": true,
+                "options": {
+                    "name": "Widget.legalInformationShowLegalDisclosureLabel"
+                }
+            },
+            "showPrivacyPolicy": {
+                "type": "checkbox",
+                "required": true,
+                "defaultValue": true,
+                "options": {
+                    "name": "Widget.legalInformationShowPrivacyPolicyLabel"
+                }
+            },
+            "showGtc": {
+                "type": "checkbox",
+                "required": true,
+                "defaultValue": true,
+                "options": {
+                    "name": "Widget.legalInformationShowGtcLabel"
+                }
+            },
+            "cancellationFormContainer": {
+                "type": "vertical",
+                "options": {
+                    "name": "Widget.legalInformationCancellationFormContainerLabel"
+                },
+                "children": {
+                    "showCancellationForm": {
+                        "type": "checkbox",
+                        "required": true,
+                        "defaultValue": true,
+                        "options": {
+                            "name": "Widget.legalInformationShowCancellationFormLabel"
+                        }
+                    },
+                    "useCancellationPdfUpload": {
+                        "type": "checkbox",
+                        "required": true,
+                        "defaultValue": false,
+                        "isVisible": "cancellationFormContainer.showCancellationForm",
+                        "options": {
+                            "name": "Widget.legalInformationCancellationPdfActiveLabel"
+                        }
+                    },
+                    "cancellationPdfPath": {
+                        "type": "file",
+                        "required": false,
+                        "defaultValue": "",
+                        "isVisible": "cancellationFormContainer.showCancellationForm && cancellationFormContainer.useCancellationPdfUpload",
+                        "options": {
+                            "name": "Widget.legalInformationCancellationPdfUploadLabel",
+                            "tooltipText": "Widget.legalInformationCancellationPdfUploadTooltip",
+                            "allowedExtensions": [
+                                "pdf"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        "identifier": "Minott::FooterListWidget",
+        "label": "Widget.listLabel",
+        "previewImageURL": "/images/dia-widgets/footer-linklist.png",
+        "type": "static",
+        "categories": [
+            "dia"
+        ],
+        "position": 900,
+        "widgetClass": "Minott\\Widgets\\Footer\\FooterListWidget",
+        "settings": {
+            "displayInline": {
+                "type": "checkbox",
+                "defaultValue": false,
+                "options": {
+                    "name": "Widget.displayInlineLabel"
+                }
+            },
+            "entries": {
+                "type": "vertical",
+                "isList": "[1,]",
+                "options": {
+                    "name": "Widget.listEntryLabel"
+                },
+                "children": {
+                    "text": {
+                        "type": "text",
+                        "required": false,
+                        "options": {
+                            "name": "Widget.listEntryNameLabel",
+                            "tooltipText": "Widget.listEntryNameTooltip"
+                        }
+                    },
+                    "url": {
+                        "type": "url",
+                        "required": false,
+                        "options": {
+                            "name": "Widget.listEntryUrlLabel",
+                            "tooltipText": "Widget.listEntryUrlTooltip"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        "identifier": "Minott::FooterTextWidget",
+        "label": "Widget.textLabel",
+        "previewImageURL": "/images/dia-widgets/footer-text.png",
+        "type": "static",
+        "categories": [
+            "dia"
+        ],
+        "position": 800,
+        "widgetClass": "Minott\\Widgets\\Footer\\FooterTextWidget",
+        "settings": {
+            "text": {
+                "type": "codeEditor",
+                "options": {
+                    "name": "Widget.textCodeEditorLabel"
+                }
+            }
+        }
+    },
+    {
+        "identifier": "Minott::FooterTitleWidget",
+        "label": "Widget.footerHeadline",
+        "previewImageURL": "/images/dia-widgets/footer-headline.png",
+        "type": "static",
+        "categories": [
+            "dia"
+        ],
+        "position": 400,
+        "widgetClass": "Minott\\Widgets\\Footer\\FooterTitleWidget",
+        "settings": {
+            "text": {
+                "type": "text",
+                "defaultValue": "Headline",
+                "options": {
+                    "name": "Widget.titleBarTextLabel"
+                }
+            }
+        }
+    },
+    {
+        "identifier": "Minott::CheckoutHeaderWidget",
+        "label": "Widget.checkoutHeader",
+        "previewImageURL": "/images/dia-widgets/header-checkout-navbar.png",
+        "type": "header",
+        "categories": [
+            "dia"
+        ],
+        "position": 0,
+        "widgetClass": "Minott\\Widgets\\Header\\CheckoutHeaderWidget",
+        "settings": {
+            "companyLogoUrl": {
+                "type": "file",
+                "required": false,
+                "defaultValue": "",
+                "options": {
+                    "name": "Widget.navigationCompanyLogoUrlLabel",
+                    "tooltipText": "Widget.navigationCompanyLogoUrlTooltip"
+                }
+            }
+        }
+    },
+    {
+        "identifier": "Minott::HeaderWidget",
+        "label": "Widget.Header",
+        "previewImageURL": "/images/dia-widgets/header-navbar.png",
+        "type": "header",
+        "categories": [
+            "dia"
+        ],
+        "allowedNestingTypes": [
+            "static", "structure", "default", "itemsearch"
+        ],
+        "position": 0,
+        "widgetClass": "Minott\\Widgets\\Header\\HeaderWidget",
+        "settings": {
+            "enableLanguageSelect": {
+                "type": "checkbox",
+                "required": true,
+                "defaultValue": true,
+                "options": {
+                    "name": "Widget.topBarEnableLanguageSelectLabel"
+                }
+            },
+            "enableShippingCountrySelect": {
+                "type": "checkbox",
+                "required": true,
+                "defaultValue": true,
+                "options": {
+                    "name": "Widget.topBarEnableShippingCountrySelectLabel"
+                }
+            },
+            "enableCurrencySelect": {
+                "type": "checkbox",
+                "required": true,
+                "defaultValue": true,
+                "options": {
+                    "name": "Widget.topBarEnableCurrencySelectLabel"
+                }
+            },
+            "showItemImages": {
+                "type": "checkbox",
+                "required": true,
+                "defaultValue": false,
+                "options": {
+                    "name": "Widget.topBarShowItemImagesLabel"
+                }
+            },
+            "forwardToSingleItem": {
+                "type": "checkbox",
+                "required": false,
+                "defaultValue": false,
+                "isVisible": "searchStyle !== 'hidden'",
+                "options": {
+                    "name": "Widget.topBarForwardToSingleItemLabel"
+                }
+            },
+            "enableLogin": {
+                "type": "checkbox",
+                "required": true,
+                "defaultValue": true,
+                "options": {
+                    "name": "Widget.topBarEnableLoginLabel"
+                }
+            },
+            "enableRegistration": {
+                "type": "checkbox",
+                "required": true,
+                "defaultValue": true,
+                "options": {
+                    "name": "Widget.topBarEnableRegistrationLabel"
+                }
+            },
+            "enableWishList": {
+                "type": "checkbox",
+                "required": true,
+                "defaultValue": true,
+                "options": {
+                    "name": "Widget.topBarEnableWishListLabel"
+                }
+            },
+            "enableBasketPreview": {
+                "type": "checkbox",
+                "required": true,
+                "defaultValue": true,
+                "options": {
+                    "name": "Widget.topBarEnableBasketPreviewLabel"
+                }
+            },
+            "basketValues": {
+                "type": "select",
+                "required": true,
+                "defaultValue": "sum",
+                "isVisible": "enableBasketPreview",
+                "options": {
+                    "name": "Widget.topBarBasketValuesLabel",
+                    "tooltipText": "Widget.topBarBasketValuesTooltip",
+                    "listBoxValues": [
+                        {
+                            "value": "sum",
+                            "caption": "Widget.topBarBasketValuesSum",
+                            "position": 0
+                        },
+                        {
+                            "value": "quantity",
+                            "caption": "Widget.topBarBasketValuesQuantity",
+                            "position": 0
+                        },
+                        {
+                            "value": "both",
+                            "caption": "Widget.topBarBasketValuesBoth",
+                            "position": 0
+                        }
+                    ]
+                }
+            },
+            "companyLogoUrl": {
+                "type": "file",
+                "required": false,
+                "defaultValue": "",
+                "options": {
+                    "name": "Widget.navigationCompanyLogoUrlLabel",
+                    "tooltipText": "Widget.navigationCompanyLogoUrlTooltip"
+                }
+            },
+            "megaMenuCategoryIds": {
+                "type": "text",
+                "required": true,
+                "defaultValue": ""
+            },
+            "megaMenuLevels": {
+                "type": "select",
+                "required": false,
+                "defaultValue": 2,
+                "options": {
+                    "name": "Widget.navigationMegaMenuLevelsLabel",
+                    "tooltipText": "Widget.navigationMegaMenuLevelsTooltip",
+                    "listBoxValues": [
+                        {
+                            "value": 2,
+                            "caption": "Widget.navigationMegaMenuLevels2"
+                        },
+                        {
+                            "value": 3,
+                            "caption": "Widget.navigationMegaMenuLevels3"
+                        },
+                        {
+                            "value": 4,
+                            "caption": "Widget.navigationMegaMenuLevels4"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+]

@@ -1,0 +1,40 @@
+$remScaleFactor: 16;
+
+@mixin unitize($property, $value, $important: false) {
+	$suffix: if($important, " !important", "");
+	$pxValue: $value;
+	$remValue: ($value / $remScaleFactor);
+	#{$property}: #{$value}px#{$suffix};
+	#{$property}: #{$remValue}rem;
+}
+
+@mixin unitize-multiple($property, $topValue, $rightValue: $topValue, $bottomValue: $topValue, $leftValue: $rightValue) {
+	$pxTopValue: $topValue;
+	$remTopValue: ($topValue / $remScaleFactor);
+	
+	$pxRightValue: $rightValue;
+	$remRightValue: ($rightValue / $remScaleFactor);
+	
+	$pxBottomValue: $bottomValue;
+	$remBottomValue: ($bottomValue / $remScaleFactor);
+	
+	$pxLeftValue: $leftValue;
+	$remLeftValue: ($leftValue / $remScaleFactor);
+	
+	#{$property}: #{$pxTopValue}px #{$pxRightValue}px #{$pxBottomValue}px #{$pxLeftValue}px;
+	#{$property}: #{$remTopValue}rem #{$remRightValue}rem #{$remBottomValue}rem #{$remLeftValue}rem;
+}
+
+@mixin sizes($property, $smallvalue, $mediumvalue, $largevalue, $important: false) {
+	$suffix: if($important, " !important", "");
+
+	#{$property}: #{$smallvalue}px#{$suffix};
+
+	@include media-breakpoint-up('md') {
+		#{$property}: #{$mediumvalue}px#{$suffix};
+	}
+
+	@include media-breakpoint-up('lg') {
+		#{$property}: #{$largevalue}px#{$suffix};
+	}
+}

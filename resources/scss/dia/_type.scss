@@ -1,0 +1,148 @@
+.display-1,
+%display-1 {
+  @include unitize("line-height", $dia-display-1);
+  font-size: 3.5rem;
+  line-height: 3.5rem;
+  font-weight: 800;
+
+  @if $dia-responsive-font-auto==true {
+    @include unitize("font-size", $dia-display-1);
+  }
+
+  @else {
+    @include sizes("font-size", 25, 25, 35);
+  }
+}
+
+.display-2,
+%display-2 {
+  @include unitize("line-height", $dia-display-2);
+  font-weight: 800;
+
+  @if $dia-responsive-font-auto==true {
+    @include unitize("font-size", $dia-display-2);
+  }
+
+  @else {
+    @include sizes("font-size", 25, 25, 35);
+  }
+}
+
+h1,
+.h1,
+%h1 {
+  font-family: $dia-font-family-headline;
+  @include unitize("line-height", $dia-h1);
+  font-weight: 300;
+
+  @if $dia-responsive-font-auto==true {
+    @include unitize("font-size", $dia-h1);
+  }
+
+  @else {
+    @include sizes("font-size", 25, 25, $dia-h1);
+  }
+}
+
+h2,
+.h2,
+%h2 {
+  font-family: $dia-font-family-headline;
+  @include unitize("line-height", $dia-h2);
+  font-weight: 300;
+
+  @if $dia-responsive-font-auto==true {
+    @include unitize("font-size", $dia-h2);
+  }
+
+  @else {
+    @include sizes("font-size", 25, 25, $dia-h2);
+  }
+
+  a {
+      color: #43484D;
+  }
+}
+
+h3,
+.h3,
+%h3 {
+  font-family: $dia-font-family-headline;
+  @include unitize("line-height", $dia-h3);
+  font-weight: 300;
+  line-height: 38px;
+
+  @if $dia-responsive-font-auto==true {
+    @include unitize("font-size", $dia-h3);
+  }
+
+  @else {
+    @include sizes("font-size", 25, 25, $dia-h3);
+  }
+}
+
+h4,
+.h4,
+%h4 {
+  font-family: $dia-font-family-headline;
+  @include unitize("line-height", $dia-h4);
+  font-weight: 500; 
+
+  @if $dia-responsive-font-auto==true {
+    @include unitize("font-size", $dia-h4);
+  }
+
+  @else {
+    @include sizes("font-size", 25, 25, $dia-h4);
+  }
+}
+
+h5,
+.h5,
+%h5 {
+  font-family: $dia-font-family-headline;
+  @include unitize("line-height", $dia-h5);
+  font-weight: 500;
+
+  @if $dia-responsive-font-auto==true {
+    @include unitize("font-size", $dia-h5);
+  }
+
+  @else {
+    @include sizes("font-size", 25, 25, $dia-h5);
+  }
+}
+
+h6,
+.h6,
+%h6 {
+  font-family: $dia-font-family-headline;
+  @include unitize("line-height", $dia-h6);
+  font-weight: 500;
+
+  @if $dia-responsive-font-auto==true {
+    @include unitize("font-size", $dia-h6);
+  }
+
+  @else {
+    @include sizes("font-size", 25, 25, $dia-h6);
+  }
+}
+
+.text,
+%text,
+p {
+  @include unitize("line-height", 28);
+
+  @if $dia-responsive-font-auto==true {
+    @include unitize("font-size", $dia-text-size);
+  }
+
+  @else {
+    @include sizes("font-size", 16, 16, $dia-text-size);
+  }
+}
+
+%small {
+  font-size: $small-font-size;
+}

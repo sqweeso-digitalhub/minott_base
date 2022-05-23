@@ -1,0 +1,19 @@
+.dia-checkout-shop-nav  {
+    background: $dia-header-checkout-bg;
+    padding: 20px 0;
+    border-bottom: 1px solid $dia-navbar-border-color;
+    &__wrap {
+        justify-content: space-between;
+        align-items: center;
+        @include media-breakpoint-down(md) {
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+    }
+    &__logo-link {
+
+    }
+    &__back-link {
+        color: $dia-header-checkout-color;
+    }
+}

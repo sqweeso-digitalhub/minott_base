@@ -1,0 +1,364 @@
+{% import "Ceres::Widgets.Helper.TwigBuilder" as Twig %}
+{% import "Ceres::Widgets.Helper.WidgetHelper" as WidgetHelper %}
+
+{% set uid = uid() %}
+
+{% set enableLanguageSelect         = widget.settings.enableLanguageSelect.mobile %}
+{% set enableShippingCountrySelect  = widget.settings.enableShippingCountrySelect.mobile %}
+{% set enableCurrencySelect         = widget.settings.enableCurrencySelect.mobile %}
+{% set enableLogin                  = widget.settings.enableLogin.mobile %}
+{% set enableRegistration           = widget.settings.enableRegistration.mobile %}
+{% set enableWishList               = widget.settings.enableWishList.mobile %}
+{% set enableBasketPreview          = widget.settings.enableBasketPreview.mobile %}
+{% set basketValues                 = widget.settings.basketValues.mobile %}
+{% set showItemImages               = widget.settings.showItemImages.mobile %}
+{% set forwardToSingleItem          = widget.settings.forwardToSingleItem.mobile %}
+{% set companyLogoUrl               = widget.settings.companyLogoUrl.mobile %}
+{% set navigationStyle              = widget.settings.navigationStyle.mobile %}
+{% set megaMenuCategoryIds          = widget.settings.megaMenuCategoryIds.mobile | split(",") %}
+{% set megaMenuLevels               = widget.settings.megaMenuLevels.mobile %}
+
+{{ Twig.import("LayoutContainer", "Ceres::PageDesign.Macros.LayoutContainer") }}
+{{ Twig.set("currencyFormat", Twig.call("config", ["Ceres.currency.format"])) }}
+{{ Twig.set("currencyFormatSelect", Twig.call("config", ["Ceres.currency.format_selection"])) }}
+{{ Twig.set("currencyData", Twig.call("services.checkout.getCurrencyData") ~ "[currencyFormat]") }}
+{{ Twig.set("enabledRoutes", Twig.call("config", ["IO.routing.enabled_routes"]) ~ " | split(\", \")") }}
+{{ Twig.set("basketPreviewType", Twig.call("config", ["Ceres.basket.preview_type"])) }}
+{{ Twig.set("activeCurrencies", Twig.call("config", ["Ceres.currency.available_currencies"]) ~ " | split(\", \")") }}
+{{ Twig.set("defaultLanguage", Twig.call("services.webstoreConfig.getDefaultLanguage")) }}
+{{ Twig.set("overrideSearchBar", Twig.call("LayoutContainer.show", ["Ceres::Search.SearchBar"])) }}
+
+{% if companyLogoUrl is empty %}
+    {% set companyLogoUrl = plugin_path('Ceres') ~ "/images/ceres-logo.svg" %}
+{% endif %}
+
+{{ Twig.set("logoUrl", companyLogoUrl | json_encode) }}
+{{ Twig.print("add_asset(logoUrl,'image')") }}
+
+<div class="dia-header header-fw unfixed">
+    <div class="dia-shop-nav">
+        <div class="dia-shop-nav__container container-max">
+            <div class="dia-shop-nav__row">
+                <div class="col-12 col-md-2 col-lg-1">
+                    <a class="dia-shop-nav__logo-link" href="{{ Twig.print('urls.home') }}">
+                        <img alt="{{ Twig.print('trans("Ceres::Template.headerCompanyName")') }}" src="{{ companyLogoUrl }}"
+                             class="dia-shop-nav__logo"/>
+                    </a>
+                </div>
+                <div class="d-none d-lg-block col-lg-3">
+                    <ul class="safety-list">
+                        <li class="safety-list__item">
+                            <a href="https://www.kaeufersiegel.de/zertifikat/?uuid=db976818-c253-11e4-bc3a-14dae9b38da3-1117837001" rel="nofollow" target="_blank">
+                                <img class="safety-list__image" src="{{ plugin_path('Minott') }}/images/siegel_scaled.png" alt="Sicher shoppen">
+                            </a>
+                        </li>
+                        <li class="safety-list__item">
+                            <img class="safety-list__image" src="{{ plugin_path('Minott') }}/images/comodo_scaled.png" alt="Comodo SSL zertifiziert">
+                        </li>
+                        <li class="safety-list__item">
+                            <a href="https://www.haendlerbund.de/de/leistungen/vertrauensloesungen/ecommerce-europe-trustmark/zertifikat?uuid=db976818-c253-11e4-bc3a-14dae9b38da3-1117837001" rel="nofollow" target="_blank">
+                                <img class="safety-list__image" src="{{ plugin_path('Minott') }}/images/ecommerce_scaled.png" alt="Ecommerce">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-5 col-lg-5 d-none d-md-block">
+                    {{ Twig.if("overrideSearchBar | trim is empty") }}
+                        <ul class="contact-list d-md-none d-lg-block">
+                            <li class="contact-list__item contact-list__item--phone">
+                                <a href="tel:+04088307734">
+                                    {{ Twig.print('trans("Minott::Template.contactPhone")') }}
+                                </a>
+                            </li>
+                            <li class="contact-list__item contact-list__item--mail">
+                                <a href="mailto:info@minott-center.com">
+                                    {{ Twig.print('trans("Minott::Template.contactMail")') }}
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="dia-shop-nav__search-wrapper">
+                            {% if not isPreview %}<lazy-hydrate when-idle>{% endif %}
+                            <item-search>
+                                <div class="position-relative d-flex flex-grow-1">
+                                    <input type="search" class="search-input px-3 py-2 flex-grow-1" placeholder="Jetzt Onlineshop durchsuchen" aria-label="{{ Twig.print('trans("Ceres::Template.headerSearchTerm")') }}">
+                                    <button class="search-submit px-3" type="submit" aria-label="{{ Twig.print('trans("Ceres::Template.headerSearch")') }}">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+
+                                {% if isPreview %}
+                                    <template #search-button>
+                                        <button class="search-submit" type="submit" {{ WidgetHelper.makeClickable(isPreview) }} data-toggle="collapse" href="#search-suggestions_{{ uid }}" role="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </template>
+                                {% endif %}
+
+                                {% if isPreview or children is defined and children.suggestions | trim is not empty %}
+                                    <template #autocomplete-suggestions>
+                                        <div class="autocomplete-suggestions shadow bg-white w-100{% if isPreview %} collapse position-relative mh-100{% endif %}"
+                                            {% if isPreview %} data-builder-child-container="suggestions" id="search-suggestions_{{ uid }}"{% endif %}>
+                                            {{ children.suggestions | raw }}
+                                        </div>
+                                    </template>
+                                {% endif %}
+                            </item-search>
+                            {% if not isPreview %}</lazy-hydrate>{% endif %}
+                        </div>
+                    {{ Twig.else() }}
+                        {{ Twig.print("overrideSearchBar | raw") }}
+                    {{ Twig.endif() }}
+                </div>
+                <div class="col-12 col-md-5 col-lg-3">
+                    <ul class="dia-controls-list">
+                        <li class="dia-controls-list__item--m-menu">
+                            <button v-open-mobile-navigation class="btn dia-controls-list__item dia-navbar__toggle d-lg-none" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                            </button>
+                        </li>
+                        <li class="dia-controls-list__item dia-controls-list__item--search control-search">
+                            <a aria-label="toggle search"
+                               data-toggle="collapse"
+                               href="#searchBox"
+                               aria-expanded="false"
+                               aria-controls="searchBox"
+                               @mouseover.once="$store.dispatch('loadComponent', 'item-search')">
+                                <i aria-hidden="true" class="fa fa-search"></i>
+                            </a>
+                        </li>
+                        {% if enableWishList %}
+                            {{ Twig.if("\"wish-list\" in enabledRoutes or \"all\" in enabledRoutes") }}
+                            <li class="dia-controls-list__item dia-controls-list__item--wish">
+                                <lazy-hydrate when-idle>
+                                    <wish-list-count>
+                                        <a aria-label="{{ Twig.print('trans("Ceres::Template.wishList")') }}">
+                                            <span class="badge-right">0</span>
+                                            <i aria-hidden="true" class="fa fa-heart-o"></i>
+                                        </a>
+                                    </wish-list-count>
+                                </lazy-hydrate>
+                            </li>
+                            {{ Twig.endif() }}
+                        {% endif %}
+
+                        {% if enableLogin %}
+                            <li class="dia-controls-list__item dia-controls-list__item--login dropdown">
+                                <lazy-hydrate when-idle>
+                                    <user-login-handler :show-registration="{{ enableRegistration | json_encode }}">
+                                        <div class="dropdown">
+                                            <a href="#" class="" id="accountMenuList" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-boundary="window">
+                                                <i aria-hidden="true" class="fa fa-user"></i>
+                                            </a>
+                                        </div>
+                                    </user-login-handler>
+                                </lazy-hydrate>
+                            </li>
+                        {% endif %}
+
+                        {% if enableBasketPreview %}
+                            <li class="dia-controls-list__item dia-controls-list__item--basket" @mouseover.once="$store.dispatch('loadComponent', 'basket-preview')">
+                                <a v-toggle-basket-preview href="#" class="toggle-basket-preview">
+                                    {% if basketValues != "sum" %}
+                                        <span class="badge-right" v-basket-item-quantity="$store.state.basket.data.itemQuantity">0</span>
+                                    {% endif %}
+
+                                    <icon icon="shopping-cart" class-loading="fa-refresh" :loading="$store.state.basket.isBasketLoading"></icon>
+                                    {% if basketValues != "quantity" %}
+                                        <span class="p-0 d-none d-xl-inline-block" v-if="!$store.state.basket.showNetPrices" v-basket-item-sum="$store.state.basket.data.itemSum">0,00 {{ Twig.print("currencyData") }}</span>
+                                        <span class="p-0 d-none d-xl-inline-block" v-else v-cloak v-basket-item-sum="$store.state.basket.data.itemSumNet">0,00 {{ Twig.print("currencyData") }}</span>
+                                    {% endif %}
+                                </a>
+
+                                <basket-preview v-if="$store.state.lazyComponent.components['basket-preview']" :show-net-prices="{{ Twig.print("showNetPrices | json_encode") }}">
+                                    <template #before-basket-item>
+                                        {{ Twig.print(Twig.call("LayoutContainer.show", ["Ceres::BasketList.BeforeItem"])) }}
+                                    </template>
+                                    <template #after-basket-item>
+                                        {{ Twig.print(Twig.call("LayoutContainer.show", ["Ceres::BasketList.AfterItem"])) }}
+                                    </template>
+                                    <template #before-basket-totals>
+                                        {{ Twig.print(Twig.call("LayoutContainer.show", ["Ceres::BasketPreview.BeforeBasketTotals"])) }}
+                                    </template>
+                                    <template #before-item-sum>
+                                        {{ Twig.print(Twig.call("LayoutContainer.show", ["Ceres::BasketTotals.BeforeItemSum"])) }}
+                                    </template>
+                                    <template #after-item-sum>
+                                        {{ Twig.print(Twig.call("LayoutContainer.show", ["Ceres::BasketTotals.AfterItemSum"])) }}
+                                    </template>
+                                    <template #before-shipping-costs>
+                                        {{ Twig.print(Twig.call("LayoutContainer.show", ["Ceres::BasketTotals.BeforeShippingCosts"])) }}
+                                    </template>
+                                    <template #after-shipping-costs>
+                                        {{ Twig.print(Twig.call("LayoutContainer.show", ["Ceres::BasketTotals.AfterShippingCosts"])) }}
+                                    </template>
+                                    <template #before-total-sum>
+                                        {{ Twig.print(Twig.call("LayoutContainer.show", ["Ceres::BasketTotals.BeforeTotalSum"])) }}
+                                    </template>
+                                    <template #before-vat>
+                                        {{ Twig.print(Twig.call("LayoutContainer.show", ["Ceres::BasketTotals.BeforeVat"])) }}
+                                    </template>
+                                    <template #after-vat>
+                                        {{ Twig.print(Twig.call("LayoutContainer.show", ["Ceres::BasketTotals.AfterVat"])) }}
+                                    </template>
+                                    <template #after-total-sum>
+                                        {{ Twig.print(Twig.call("LayoutContainer.show", ["Ceres::BasketTotals.AfterTotalSum"])) }}
+                                    </template>
+                                    <template #after-basket-totals>
+                                        {{ Twig.print(Twig.call("LayoutContainer.show", ["Ceres::BasketPreview.AfterBasketTotals"])) }}
+                                    </template>
+                                    <template #before-checkout-button>
+                                        {{ Twig.print(Twig.call("LayoutContainer.show", ["Ceres::BasketPreview.BeforeCheckoutButton"])) }}
+                                    </template>
+                                    <template #after-checkout-button>
+                                        {{ Twig.print(Twig.call("LayoutContainer.show", ["Ceres::BasketPreview.AfterCheckoutButton"])) }}
+                                    </template>
+                                </basket-preview>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ Twig.import("Tree", "Minott::Category.Macros.CategoryTree") }}
+    <div class="container-max page-header">
+        <div class="row">
+            <div id="searchBox" class="cmp cmp-search-box w-100 collapse{% if isPreview %} position-relative{% endif %}">
+                {{ Twig.if("overrideSearchBar | trim is empty") }}
+                    {% if not isPreview %}<lazy-load component="item-search">{% endif %}
+                        <item-search>
+                            {% if isPreview or children is defined and children.suggestions | trim is not empty %}
+                                <template #autocomplete-suggestions>
+                                    <div class="autocomplete-suggestions shadow bg-white w-100{% if isPreview %} position-relative mh-100{% endif %}"
+                                        {% if isPreview %} data-builder-child-container="suggestions"{% endif %}>
+                                        {{ children.suggestions | raw }}
+                                    </div>
+                                </template>
+                            {% endif %}
+                        </item-search>
+                    {% if not isPreview %}</lazy-load>{% endif %}
+                {{ Twig.else() }}
+                    {{ Twig.print("overrideSearchBar | raw") }}
+                {{ Twig.endif() }}
+            </div>
+        </div>
+    </div>
+    <nav class="dia-navbar__wrapper">
+        <div class="dia-navbar__container container-max">
+            {# #TODO: Active Class fehlt bei den Menüpunkten #}
+            <ul class="dia-navbar">
+                {{ Twig.print(Twig.call("Tree.get_nav_bar", [Twig.var("categories"), "", megaMenuLevels, megaMenuCategoryIds])) }}
+            </ul>
+        </div>
+    </nav>
+    {{ Twig.if("services.template.isCurrentTemplate('tpl.category.content')
+     or services.template.isCurrentTemplate('tpl.category.item ')
+     or services.template.isCurrentTemplate('tpl.category.blog')
+     or services.template.isCurrentTemplate('tpl.category.container')
+     or services.template.isCurrentTemplate('tpl.item')
+     or services.template.isCurrentTemplate('tpl.contact')
+     or services.template.isCurrentTemplate('tpl.search ')")}}
+    <div class="breadcrumbs">
+        <nav class="small d-none d-md-block px-0" data-component="breadcrumbs" data-renderer="twig">
+            {{ Twig.set('crumbs', '[]') }}
+            <ul class="breadcrumb container-max">
+                <li class="breadcrumb-item">
+                    <a href="{{ Twig.print('urls.home') }}">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        {{ Twig.set('crumb', '
+                            [
+                                {
+                                    "@type": "ListItem",
+                                    "position": 1,
+                                    "item":
+                                    {
+                                        "@id": urls.home,
+                                        "name": "Home"
+                                    }
+                                }
+                            ]')
+                        }}
+                        {{ Twig.set('crumbs', 'crumbs | merge(crumb)') }}
+                    </a>
+                </li>
+                {{ Twig.if("categoryBreadcrumbs is not empty") }}
+                    {{ Twig.set("break", "false") }}
+                    {{ Twig.set("catLevel", 2) }}
+                    {{ Twig.for("category", "categoryBreadcrumbs[:categoryBreadcrumbs | length - 1]", "not break") }}
+                        {{ Twig.if("category.details[0]") }}
+                            <li class="breadcrumb-item">
+                                <a href="{{ Twig.print(Twig.call("services.category.getURLById", [Twig.var("category.id")])) }}">
+                                    {{ Twig.print("category.details[0].name") }}
+                                </a>
+                                {{ Twig.set('crumb', '
+                                    [
+                                        {
+                                            "@type": "ListItem",
+                                            "position": catLevel,
+                                            "item":
+                                            {
+                                                "@id": services.category.getURLById(category.id),
+                                                "name": category.details[0].name
+                                            }
+                                        }
+                                    ]')
+                                }}
+                                {{ Twig.set('crumbs', 'crumbs | merge(crumb)') }}
+                                {{ Twig.do("set catLevel = catLevel + 1") }}
+                            </li>
+                        {{ Twig.else() }}
+                            {{ Twig.set("break", "true") }}
+                        {{ Twig.endif() }}
+                    {{ Twig.endfor() }}
+
+                    {{ Twig.set("lastCategory", "categoryBreadcrumbs | last") }}
+                    {{ Twig.if("lastCategory.details is defined") }}
+                        <li class="breadcrumb-item active">
+                            {{ Twig.set('crumb', '
+                                                [
+                                                    {
+                                                        "@type": "ListItem",
+                                                        "position": catLevel,
+                                                        "item":
+                                                        {
+                                                            "@id": services.category.getURLById(lastCategory.id),
+                                                            "name": lastCategory.details[0].name
+                                                        }
+                                                    }
+                                                ]')
+                            }}
+                            {{ Twig.set('crumbs', 'crumbs | merge(crumb)') }}
+                            <span>{{ Twig.print("lastCategory.details[0].name") }}</span>
+                        </li>
+                    {{ Twig.elseif("item.documents[0].data is defined") }}
+                        <li class="breadcrumb-item active">
+                            {{ Twig.set('crumb', '
+                                    [
+                                        {
+                                            "@type": "ListItem",
+                                            "position": catLevel,
+                                            "item":
+                                            {
+                                                "@id": requestedVariationUrl,
+                                                "name": item.documents[0].data | itemName
+                                            }
+                                        }
+                                    ]')
+                            }}
+                            {{ Twig.set('crumbs', 'crumbs | merge(crumb)') }}
+                            <span>{{ Twig.print("item.documents[0].data | itemName") }}</span>
+                        </li>
+                    {{ Twig.endif() }}
+                {{ Twig.endif() }}
+            </ul>
+            <script2 type="application/ld+json">
+            {
+                "@context":"http://schema.org/",
+                "@type":"BreadcrumbList",
+                "itemListElement": {{ Twig.print('crumbs | json_encode | raw') }}
+            }
+            </script2>
+        </nav>
+    </div>
+    {{ Twig.endif() }}
+</div>

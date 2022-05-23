@@ -1,0 +1,53 @@
+.btn-appearance {
+    i {
+        display: none;
+    }
+}
+
+.btn-outline-primary {
+    background: $dia-gray;
+    color: $white;
+    border-color: $dia-gray;
+    box-shadow: 0;
+
+    &:hover,
+    &:active {
+        background: darken($dia-gray, 10%);
+        border-color: darken($dia-gray, 10%);
+
+    }
+
+    &:focus {
+        box-shadow: 0;
+    }
+}
+
+.input-group-btn .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+// create gray outline button 
+.btn-outline-default {
+    // @include button-outline-variant($gray-light);
+}
+
+.btn {
+    font-weight: 700;
+    padding: 12px 10px;
+    border-radius: 0;
+
+    &.btn-right {
+        float: right;
+    }
+
+    &.btn-remove-address {
+        background-color: $danger;
+        margin-right: -5px;
+        color: #fff;
+
+        &:hover {
+            background-color: #c9302c;
+        }
+    }
+}
