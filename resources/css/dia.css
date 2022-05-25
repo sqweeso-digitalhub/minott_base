@@ -1646,6 +1646,11 @@ form#CfourItemQuestionsForm .form-check.mb-3.error {
   background: #f2f2f2;
   border: 1px solid #43484D; }
 
+
+.input-unit[data-validate="password"] label {
+  order: -1;
+}
+
 .input-unit {
   display: flex;
   flex-direction: column;
