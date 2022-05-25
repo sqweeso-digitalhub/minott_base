@@ -1,3 +1,15 @@
+body {
+    .page-register {
+        .input-unit {
+            [data-validate="passwort"] {
+                label {
+                    order: -1;
+                }
+            }
+        }
+    }
+}
+
 .input-unit {
     display: flex;
     flex-direction: column;
